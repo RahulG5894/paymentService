@@ -5,6 +5,7 @@ import com.learning.ps.api.model.Payment; // Generate explicit getters and sette
 import com.learning.ps.api.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -26,5 +27,9 @@ public class PaymentService {
     public String paymentProcessing() {
         // api should be 3rd party payment gateway (paypal or paytm)
         return new Random().nextBoolean() ? "success" : "failed";
+    }
+
+    public List<Payment> getPaymentDetailsByOrderId(int orderId) {
+        return paymentRepository.findByOrderId(orderId);
     }
 }
